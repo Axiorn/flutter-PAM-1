@@ -2,7 +2,7 @@
 # Hi, this is a PAM task Program! 👋
 
 
-# PAM
+# Pemrograman Aplikasi Mobile (PAM)
 PAM adalah salah satu mata kuliah wajib yang bisa di ambil oleh mahasiswa Sistem Informasi UPN "Veteran" Yogyakarta pada semester 5. Mata kuliah ini menuntut mahasiswa untuk bisa memahami konsep OOP atau Object Oriented Programming dengan menggunakan bahasa dart dan Framework Flutter.
 
 

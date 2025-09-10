@@ -32,8 +32,7 @@ Just plug and play 🎲
 
 ## Badges
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)  ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue)  ![npm](https://img.shields.io/badge/npm-11.4.1-red)  ![PHP](https://img.shields.io/badge/PHP-8.1.10-777bb4)  ![Laravel](https://img.shields.io/badge/Laravel-10.x-f9322c)
-
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)  ![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Web-blue)  ![Flutter](https://img.shields.io/badge/Flutter-3.24.0-02569B?logo=flutter)  ![Dart](https://img.shields.io/badge/Dart-3.5.0-0175C2?logo=dart)  ![License](https://img.shields.io/badge/license-MIT-green)  
 
 
 ## 🚀 About Us

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tugas1_pam/components/my_button.dart';
-import 'package:tugas1_pam/components/my_textfiled.dart';
+import 'package:tugas1_pam/components/my_textfield.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});

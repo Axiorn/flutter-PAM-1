@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/calculator.dart';
-import 'pages/history.dart';
+import 'pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: "Login",
       theme: ThemeData(
         textTheme: TextTheme(
           bodySmall: TextStyle(fontSize: 16, color: Colors.white),
@@ -28,11 +27,10 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.blue,
         ),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const CalculatorApp(),
-        '/history': (context) => History(),
-      },
+    initialRoute: '/',
+    routes: {
+      '/' : (context) => const Login()
+    },
     );
   }
 }

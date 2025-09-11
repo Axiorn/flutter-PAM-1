@@ -7,14 +7,25 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Login",
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)
+        textTheme: TextTheme(
+          bodySmall: TextStyle(fontSize: 16, color: Colors.white),
+          bodyMedium: TextStyle(fontSize: 20, color: Colors.white),
+          bodyLarge: TextStyle(fontSize: 28, color: Colors.white),
+          headlineSmall: TextStyle(fontSize: 16, color: Colors.white),
+          headlineMedium: TextStyle(fontSize: 18, color: Colors.white),
+          headlineLarge: TextStyle(fontSize: 28, color: Colors.white),
+          labelMedium: TextStyle(fontSize: 18, color: Colors.white60),
+        ),
+        scaffoldBackgroundColor: Color(0xff090909),
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: Colors.blue,
+        ),
       ),
     initialRoute: '/',
     routes: {
@@ -23,4 +34,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

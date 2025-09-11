@@ -48,11 +48,11 @@ class _DigitCounterPageState extends State<DigitCounterPage> {
               obscureText: false,
             ),
             const SizedBox(height: 20),
-            MyButton(onTap: countDigits, text: "Check"),
+            MyButton(onTap: countDigits, text: "Check",),
             const SizedBox(height: 20),
             Text(
               result,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, ),
             ),
           ],
         ),

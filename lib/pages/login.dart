@@ -30,14 +30,15 @@ class _LoginPageState extends State<LoginPage> {
   void signUserIn() {
     if (usernameController.text == username &&
         passwordController.text == password) {
+    if (usernameController.text == username && passwordController.text == password) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => HomePage()),
       );
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Username atau password salah!")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Username atau password salah!")),
+      );
     }
   }
 
@@ -81,8 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Forgot Password?',
-                    style: TextStyle(color: Colors.grey[600]),
+                    'Forgot Password?', style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],
               ),

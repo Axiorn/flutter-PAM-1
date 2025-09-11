@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas1_pam/pages/navbar.dart';
 
 class GroupMembersPage extends StatelessWidget {
   const GroupMembersPage({super.key});
@@ -31,7 +32,8 @@ class GroupMembersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(backgroundColor: Colors.black,),
+      drawer: Navbar(),
+      appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

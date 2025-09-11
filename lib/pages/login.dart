@@ -28,12 +28,10 @@ class _LoginPageState extends State<LoginPage> {
   String password = "12345";
 
   void signUserIn() {
-    if (usernameController.text == username &&
-        passwordController.text == password) {
     if (usernameController.text == username && passwordController.text == password) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => Navbar()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -81,9 +79,9 @@ class _LoginPageState extends State<LoginPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'Forgot Password?', style: TextStyle(color: Colors.grey[600]),
-                  ),
+                  // Text(
+                  //   'Forgot Password?', style: TextStyle(color: Colors.grey[600]),
+                  // ),
                 ],
               ),
             ),
@@ -91,22 +89,6 @@ class _LoginPageState extends State<LoginPage> {
 
             MyButton(onTap: signUserIn),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Navbar(),
-      appBar: AppBar(title: Text("Home Page")),
-      body: Center(
-        child: Text(
-          "Login Berhasil! Selamat Datang 👋",
-          style: TextStyle(fontSize: 18),
         ),
       ),
     );

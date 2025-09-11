@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas1_pam/pages/group_members.dart';
 import 'package:tugas1_pam/pages/testing_page1.dart';
 import 'count_page.dart';
 import 'oddeven_page.dart';
@@ -23,7 +24,7 @@ class Navbar extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Testingpage1()),
+                    MaterialPageRoute(builder: (context) => GroupMembersPage()),
                   );
                 },
               ),

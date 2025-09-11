@@ -175,12 +175,13 @@ class _CalculatorApp extends State<CalculatorApp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF090909),
+        centerTitle: true,
         title: Text(
           "Calculator",
           style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        centerTitle: true,
+        )
       ),
+      
       body: Column(
         children: [
           // History

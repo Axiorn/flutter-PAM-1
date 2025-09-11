@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tugas1_pam/pages/history.dart';
 
 class CalculatorApp extends StatefulWidget {
   const CalculatorApp({super.key});
@@ -12,7 +13,8 @@ class CalculatorApp extends StatefulWidget {
 }
 
 class _CalculatorApp extends State<CalculatorApp> {
-  String result = "0";
+  String result = "";
+  String input = "0";
 
   final List<String> buttons = [
     "C",
@@ -41,21 +43,6 @@ class _CalculatorApp extends State<CalculatorApp> {
 
   List<String> history = [];
 
-  void buttonHapus(String value) {
-    setState(() {
-      if (value == "C") {
-        result = "0";
-      } else if (value == "⌫" && result.isNotEmpty) {
-        result = result.substring(0, result.length - 1);
-        if (result.isEmpty) {
-          result = "0";
-        }
-      } else {
-        result += value;
-      }
-    });
-  }
-
   void initState() {
     super.initState();
     loadHistory();
@@ -72,8 +59,25 @@ class _CalculatorApp extends State<CalculatorApp> {
     }
   }
 
-  String konversiPersen(result) {
-    double num = double.tryParse(result) ?? 0;
+  void buttonHapus(String value) {
+    setState(() {
+      if (value == "C") {
+        input = "0";
+        result = "";
+        history = [];
+      } else if (value == "⌫" && input.isNotEmpty) {
+        input = input.substring(0, input.length - 1);
+        if (input.isEmpty) {
+          input = "0";
+        }
+      } else {
+        input += value;
+      }
+    });
+  }
+
+  String konversiPersen(input) {
+    double num = double.tryParse(input) ?? 0;
     if (num == 0) {
       return "Hello World"; // pura pura ga tau
     }
@@ -82,10 +86,14 @@ class _CalculatorApp extends State<CalculatorApp> {
 
   void buttonAngka(String value) {
     setState(() {
-      if (result.length == 1 && (result == "0" || result == "-0")) {
-        result = value;
+      if (input == "0") {
+        input = value;
+      } else if (input == "-0") {
+        input = "-$value";
+      } else if (value == "0" && input.length == 1 && input == "-") {
+        input = value;
       } else {
-        result += value;
+        input += value;
       }
     });
   }
@@ -93,28 +101,24 @@ class _CalculatorApp extends State<CalculatorApp> {
   void notasiMTK(String value) {
     setState(() {
       if (value == ",") {
-        final lastnum = result.split(RegExp(r'[-+*÷]')).last;
-        if (lastnum.contains(",")) {
-          return;
-        } else {
-          result += value;
-        }
-      } else if (forbid.any((value) => result.endsWith(value))) {
-        if (result[result.length - 1] != value) {
-          result = result.substring(0, result.length - 1) + value;
+        final lastnum = input.split(RegExp(r'[-+*÷]')).last;
+        if (!lastnum.contains(",")) {
+          input += value;
+        } else {}
+      } else if (forbid.any((value) => input.endsWith(value))) {
+        if (input[input.length - 1] != value) {
+          input = input.substring(0, input.length - 1) + value;
         } else {
           return;
         }
-      } else if (value == "-" && result.length == 1 && result == "0") {
-        result = value;
-      } else if (value == "0" && result.length == 1 && result == "-") {
-        result = value;
+      } else if (value == "-" && input.length == 1 && input == "0") {
+        input = value;
       } else {
         if (value == "%") {
-          result = result.replaceAll(",", ".");
-          result = konversiPersen(result);
+          input = input.replaceAll(",", ".");
+          input = konversiPersen(input);
         } else {
-          result += value;
+          input += value;
         }
       }
     });
@@ -123,9 +127,9 @@ class _CalculatorApp extends State<CalculatorApp> {
   void perhitungan() async {
     String finalResult;
     try {
-      String userInput = result;
+      String userInput = input;
 
-      String answer = result.replaceAll("÷", "/").replaceAll(",", ".");
+      String answer = input.replaceAll("÷", "/").replaceAll(",", ".");
 
       ExpressionParser p = ShuntingYardParser();
 
@@ -162,7 +166,9 @@ class _CalculatorApp extends State<CalculatorApp> {
     } else if ("0123456789".contains(value)) {
       buttonAngka(value);
     } else if (value == "↺") {
-      Navigator.pushNamed(context, "/history");
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (context) => History()));
     } else if (value == "=") {
       perhitungan();
     } else {
@@ -174,18 +180,20 @@ class _CalculatorApp extends State<CalculatorApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF090909),
         centerTitle: true,
         title: Text(
           "Calculator",
           style: Theme.of(context).textTheme.headlineLarge,
-        )
+        ),
       ),
-      
+
       body: Column(
         children: [
           // History
           HistoryWidget(history: history),
+
+          // Input
+          InputWidget(input: input),
 
           // Hasil
           ResultWidget(result: result),
@@ -209,13 +217,13 @@ class HistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 150),
+      padding: const EdgeInsets.only(top: 100, right: 8),
       alignment: Alignment.centerRight,
       child: Text(
         history.isNotEmpty ? history.last : "",
         style: Theme.of(
           context,
-        ).textTheme.bodyLarge?.copyWith(color: Colors.white70),
+        ).textTheme.bodyLarge?.copyWith(color: Colors.black, fontSize: 25),
       ),
     );
   }
@@ -230,9 +238,25 @@ class ResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 16, bottom: 40),
+      padding: const EdgeInsets.only(right: 8),
       alignment: Alignment.centerRight,
-      child: Text(result, style: Theme.of(context).textTheme.bodyLarge),
+      child: Text(result, style: TextStyle(fontSize: 50)),
+    );
+  }
+}
+
+// ===== Input Widget =====
+class InputWidget extends StatelessWidget {
+  final String input;
+
+  const InputWidget({super.key, required this.input});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(right: 8),
+      alignment: Alignment.centerRight,
+      child: Text(input, style: TextStyle(fontSize: 50)),
     );
   }
 }
@@ -266,7 +290,7 @@ class ButtonGrid extends StatelessWidget {
           onPressed: () => onButtonPressed(text),
           child: Text(
             text,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
+            style: const TextStyle(fontSize: 30, color: Colors.white),
           ),
         );
       }).toList(),

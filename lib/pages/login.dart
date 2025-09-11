@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas1_pam/pages/navbar.dart';
 import 'package:tugas1_pam/components/my_button.dart';
 import 'package:tugas1_pam/components/my_textfield.dart';
 
@@ -27,6 +28,8 @@ class _LoginPageState extends State<LoginPage> {
   String password = "12345";
 
   void signUserIn() {
+    if (usernameController.text == username &&
+        passwordController.text == password) {
     if (usernameController.text == username && passwordController.text == password) {
       Navigator.push(
         context,
@@ -44,33 +47,26 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       // resizeToAvoidBottomInset: false, #this is for bottom overflowed
       backgroundColor: Colors.grey[300],
-      body: 
-      Padding(
+      body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Icon and Welcome Back Text
-            const Icon(
-              Icons.lock,
-              size: 80,
-            ),
+            const Icon(Icons.lock, size: 80),
             const SizedBox(height: 40),
             Text(
               'Welcome back you\'ve been missed!',
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16,
-              ),
+              style: TextStyle(color: Colors.grey[700], fontSize: 16),
             ),
             const SizedBox(height: 25),
 
             // Username and Password field
             MyTextField(
-                controller: usernameController,
-                hintText: 'Username',
-                obscureText: false,
-              ),
+              controller: usernameController,
+              hintText: 'Username',
+              obscureText: false,
+            ),
             const SizedBox(height: 10),
             MyTextField(
               controller: passwordController,
@@ -93,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 25),
 
-            MyButton(onTap: signUserIn,),
+            MyButton(onTap: signUserIn),
           ],
         ),
       ),
@@ -105,6 +101,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Navbar(),
       appBar: AppBar(title: Text("Home Page")),
       body: Center(
         child: Text(

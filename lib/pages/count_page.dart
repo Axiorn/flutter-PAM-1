@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas1_pam/pages/navbar.dart';
 import 'package:tugas1_pam/components/my_button.dart';
 import 'package:tugas1_pam/components/my_textfield.dart';
 
@@ -34,6 +35,8 @@ class _DigitCounterPageState extends State<DigitCounterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Navbar(),
+      appBar: AppBar(),
       backgroundColor: Colors.grey[300],
       body: Center(
         child: Column(

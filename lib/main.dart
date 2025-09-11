@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1_pam/pages/navbar.dart';
+import 'pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Navbar(),
+      title: "Login",
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)
+      ),
+    initialRoute: '/',
+    routes: {
+      '/' : (context) => const Login()
+    },
     );
   }
 }
+

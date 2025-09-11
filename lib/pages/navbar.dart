@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tugas1_pam/pages/testing_page1.dart';
+import 'count_page.dart';
+import 'oddeven_page.dart';
+import 'login.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        elevation: 0,
-        title: Text("data"),
-      ),
-      drawer: Drawer(
+    return Drawer(
         child: Container(
-          color: Colors.blue,
+          color: const Color.fromARGB(255, 80, 82, 83),
+          padding: EdgeInsets.only(top: 25, left: 15),
           child: ListView(
             children: [
               ListTile(
@@ -72,15 +70,14 @@ class Navbar extends StatelessWidget {
                   style: TextStyle(fontSize: 25, color: Colors.white),
                 ),
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Login()),
-                  );
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => Login()));
                 },
               ),
             ],
           ),
         ),
-      ),
     );
   }
 }

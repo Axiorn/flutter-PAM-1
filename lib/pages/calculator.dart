@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:tugas1_pam/pages/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -179,13 +179,8 @@ class _CalculatorApp extends State<CalculatorApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Calculator",
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-      ),
+      drawer: Navbar(),
+      appBar: AppBar(),
 
       body: Column(
         children: [
@@ -223,7 +218,7 @@ class HistoryWidget extends StatelessWidget {
         history.isNotEmpty ? history.last : "",
         style: Theme.of(
           context,
-        ).textTheme.bodyLarge?.copyWith(color: Colors.black, fontSize: 25),
+        ).textTheme.bodyLarge?.copyWith(color: Colors.black, fontSize: 10),
       ),
     );
   }

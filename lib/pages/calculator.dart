@@ -218,7 +218,7 @@ class HistoryWidget extends StatelessWidget {
         history.isNotEmpty ? history.last : "",
         style: Theme.of(
           context,
-        ).textTheme.bodyLarge?.copyWith(color: Colors.black, fontSize: 10),
+        ).textTheme.bodyLarge?.copyWith(color: Colors.black, fontSize: 1),
       ),
     );
   }

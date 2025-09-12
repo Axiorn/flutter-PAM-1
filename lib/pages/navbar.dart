@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tugas1_pam/pages/calculator.dart';
-import 'package:tugas1_pam/pages/group_members.dart';
-import 'package:tugas1_pam/pages/testing_page1.dart';
+import 'calculator.dart';
+import 'group_members.dart';
 import 'count_page.dart';
 import 'oddeven_page.dart';
 import 'login.dart';
